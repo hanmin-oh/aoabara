@@ -1,0 +1,88 @@
+/* TOP 2분할 */
+.homeHero2 {
+    position: relative;
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+}
+
+.heroHalf {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 크로스페이드 컨테이너 */
+.xfade {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.xfadeImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 900ms ease; /* 전환 부드럽게 */
+    transform: scale(1.02);
+}
+
+.xfadeImg.on {
+    opacity: 1;
+}
+
+/* 사진 위에 약간 톤 */
+.xfadeShade {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+}
+
+/* 오버레이 텍스트 */
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 18px 20px;
+    background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.2), rgba(0,0,0,0.55));
+    color: #fff;
+    pointer-events: none;
+}
+
+.heroTitle {
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 22px;
+}
+
+.heroSub {
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.heroBadge {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* 아래 텍스트 보기 좋게 */
+.homeBottom h2 { margin: 0 0 10px 0; }
+.homeBottom p { margin: 0; line-height: 1.6; }
+
+.cta {
+    border: 0;
+    border-radius: 14px;
+    padding: 12px 14px;
+    cursor: pointer;
+}

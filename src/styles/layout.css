@@ -1,0 +1,121 @@
+/* =========================
+   GLOBAL / FRAME
+========================= */
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden; /* ✅ 스크롤 완전 차단 */
+}
+
+/* =========================
+   APP LAYOUT
+========================= */
+
+.layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.menu {
+    height: 56px;
+    flex-shrink: 0;
+    background: #111;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brandLogo {
+    height: 28px;
+    background: #fff;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.brandText {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+    display: flex;
+    gap: 16px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 10px;
+    opacity: 0.9;
+}
+
+.nav a.active {
+    opacity: 0.7;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* =========================
+   PAGE FRAME (Router Area)
+========================= */
+
+.pageFrame {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* 페이지 전환 애니메이션 */
+.pageAnim {
+    height: 100%;
+    animation: fadeSlideIn 180ms ease-out;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    height: 40px;
+    flex-shrink: 0;
+    background: #eee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

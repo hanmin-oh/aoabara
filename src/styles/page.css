@@ -1,0 +1,48 @@
+/* =========================
+   PAGE CONTENT LAYOUT
+========================= */
+
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* TOP / MIDDLE = 1:1 */
+.top {
+    flex: 1;
+    padding: 16px;
+    background: #f6f6f6;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+.middle {
+    flex: 1;
+    display: flex;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* LEFT / RIGHT = 1:1 */
+.left,
+.right {
+    flex: 1;
+    padding: 16px;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+.left {
+    background: #fafafa;
+}
+
+.right {
+    background: #fff;
+}
+
