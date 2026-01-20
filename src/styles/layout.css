@@ -119,3 +119,141 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+/* =========================
+   INTRO (Header 없는 첫 화면)
+========================= */
+
+.introLayout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.introTop {
+    flex: 1;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.introMiddle {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.introLeft,
+.introRight {
+    flex: 1;
+    border: 0;
+    font-size: 16px;
+}
+
+.introLeft {
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.introRight {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.introFooter {
+    height: 40px;
+    flex-shrink: 0;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* =========================
+   INTRO (헤더 없는 첫 화면)
+========================= */
+.introLayout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.introTop {
+    flex: 1;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.introMiddle {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.introLeft {
+    flex: 1;
+    border: 0;
+    background: #fafafa;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.introRight {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.introRightInner {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.introRightTitle {
+    font-weight: 700;
+}
+
+.introFooter {
+    height: 40px;
+    flex-shrink: 0;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 인트로 TOP도 2분할 */
+.introHero2 {
+    display: flex;
+}
+
+.introHeroHalf {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+.introHeroOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 20px;
+    background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+    color: #fff;
+    pointer-events: none;
+}

@@ -1,17 +1,16 @@
 import { NavLink } from 'react-router-dom'
-
-export default function Header() {
+export default function Header({ onGoMain }) {
     return (
         <header className="menu">
-            {/* 로고 + 회사명 */}
-            <NavLink to="/" className="brand">
-                <img
-                    src="/logo/aog.png"
-                    alt="AOG Company Logo"
-                    className="brandLogo"
-                />
-                <span className="brandText">AOG COMPANY</span>
-            </NavLink>
+            <div
+                className="brand"
+                role="button"
+                onClick={onGoMain}
+                style={{ cursor: 'pointer' }}
+            >
+                <img src="/logo/aog.png" alt="AOG Company Logo" className="brandLogo" />
+                <span className="brandText">Team A.O.G</span>
+            </div>
 
             <nav className="nav">
                 <NavLink to="/" end>Home</NavLink>
