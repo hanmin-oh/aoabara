@@ -9,7 +9,12 @@ const IMAGES = [
     '/securities/right2.png',
 ]
 
-function CrossFade({ images, interval = 3800 }) {
+interface CrossFadeProps {
+    images: string[]
+    interval?: number
+}
+
+function CrossFade({ images, interval = 3800 }: CrossFadeProps) {
     const [idx, setIdx] = useState(0)
 
     useEffect(() => {
@@ -37,10 +42,8 @@ function CrossFade({ images, interval = 3800 }) {
 export default function AogMain() {
     return (
         <div className="aogMain">
-            {/* 배경: 전환되는 사진이 화면 꽉 채움 */}
             <CrossFade images={IMAGES} interval={3800} />
 
-            {/* 오버레이 콘텐츠 */}
             <div className="aogOverlay">
                 <div className="aogBrandRow">
                     <img className="aogLogo" src="/logo/aog.png" alt="AOG Company" />
@@ -67,7 +70,7 @@ export default function AogMain() {
                         AOG (Armor of God) Company is a professional security company prioritizing customer safety and trust.
                         With experienced personnel and a systematic approach, we provide reliable and specialized services
                         across various areas, including personal and event security, facility protection, protocol drivers,
-                        and valet services, ensuring thorough protection of our clients’ safety.
+                        and valet services, ensuring thorough protection of our clients' safety.
                     </p>
 
                     <div className="aogActions">

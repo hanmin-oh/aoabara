@@ -1,8 +1,15 @@
 import { useMemo, useState } from 'react'
 import '../styles/about.css'
 
+interface AboutItem {
+    key: string
+    title: string
+    desc: string
+    bg: string
+}
+
 export default function About() {
-    const items = useMemo(
+    const items = useMemo<AboutItem[]>(
         () => [
             {
                 key: 'personal',
@@ -44,14 +51,12 @@ export default function About() {
         []
     )
 
-    const [active, setActive] = useState(items[0])
+    const [active, setActive] = useState<AboutItem>(items[0])
 
     return (
-        <div className="aboutV2" style={{ '--aboutBg': `url(${active.bg})` }}>
-            {/* 배경(옅게) */}
+        <div className="aboutV2" style={{ '--aboutBg': `url(${active.bg})` } as React.CSSProperties}>
             <div className="aboutV2Bg" />
 
-            {/* 상단 1/3: 섹션 정사각형 버튼들 */}
             <section className="aboutV2Top">
                 <div className="aboutV2Title">
                     <h1>About A.O.G</h1>
@@ -75,7 +80,6 @@ export default function About() {
                 </div>
             </section>
 
-            {/* 중간 1/3: 소개글 */}
             <section className="aboutV2Mid">
                 <div className="aboutV2Panel">
                     <div className="aboutV2PanelHead">
@@ -91,7 +95,6 @@ export default function About() {
                 </div>
             </section>
 
-            {/* 하단 여백 */}
             <div className="aboutV2BottomSpace" />
         </div>
     )

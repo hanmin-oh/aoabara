@@ -4,7 +4,12 @@ import '../styles/home.css'
 const INTRO_TOP_LEFT = ['/securities/left1.png', '/securities/left2.png']
 const INTRO_TOP_RIGHT = ['/securities/right1.png', '/securities/right2.png']
 
-function CrossFade({ images, interval = 3500 }) {
+interface CrossFadeProps {
+    images: string[]
+    interval?: number
+}
+
+function CrossFade({ images, interval = 3500 }: CrossFadeProps) {
     const [idx, setIdx] = useState(0)
 
     useEffect(() => {
@@ -22,13 +27,16 @@ function CrossFade({ images, interval = 3500 }) {
     )
 }
 
-export default function Main({ onEnterTeamAog }) {
+interface HomeProps {
+    onEnterTeamAog: () => void
+}
+
+export default function Home({ onEnterTeamAog }: HomeProps) {
     const goTeamBara = () =>
         window.open('https://teambara.com', '_blank', 'noopener,noreferrer')
 
     return (
         <div className="introLayout">
-            {/* TOP: 2분할 사진 전환 유지 */}
             <section className="introTop introHero2 introTopWithCard">
                 <div className="introHeroHalf">
                     <CrossFade images={INTRO_TOP_LEFT} interval={3600} />
@@ -37,14 +45,12 @@ export default function Main({ onEnterTeamAog }) {
                     <CrossFade images={INTRO_TOP_RIGHT} interval={4200} />
                 </div>
 
-                {/* ✅ 기존 오버레이(제목) */}
                 <div className="introHeroOverlay">
                     <div className="heroTitle">A.O.G &amp; BARA COMPANY</div>
                     <div className="heroSub">고객을 먼저 이해하겠습니다.</div>
                     <div className="heroBadge">*서울지방경찰청 허가 제 4915호*</div>
                 </div>
 
-                {/* ✅ 추가: 소개 카드 (aogCard 스타일 재사용) */}
                 <div className="introInfoCard aogCard">
                     <h2>A.O.G Company</h2>
                     <p>
@@ -55,7 +61,6 @@ export default function Main({ onEnterTeamAog }) {
                 </div>
             </section>
 
-            {/* MIDDLE: LEFT=Team AOG / RIGHT=Team BARA 유지 */}
             <div className="introMiddle">
                 <button className="introLeft" type="button" onClick={onEnterTeamAog}>
                     TEAM AOG

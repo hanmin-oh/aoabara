@@ -1,5 +1,10 @@
 import { NavLink } from 'react-router-dom'
-export default function Header({ onGoMain }) {
+
+interface HeaderProps {
+    onGoMain: () => void
+}
+
+export default function Header({ onGoMain }: HeaderProps) {
     return (
         <header className="menu">
             <div

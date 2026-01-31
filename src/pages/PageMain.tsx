@@ -1,7 +1,17 @@
 import { useMemo } from 'react'
 
-function PageMain({ activeKey }) {
-    const content = useMemo(() => {
+interface PageMainProps {
+    activeKey: string
+}
+
+interface ContentShape {
+    top: string
+    left: string
+    right: string
+}
+
+function PageMain({ activeKey }: PageMainProps) {
+    const content = useMemo<ContentShape>(() => {
         if (activeKey === 'about') {
             return {
                 top: 'About Us',
