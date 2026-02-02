@@ -40,6 +40,8 @@ function CrossFade({ images, interval = 3800 }: CrossFadeProps) {
 }
 
 export default function AogMain() {
+    const [showContact, setShowContact] = useState(false)
+
     return (
         <div className="aogMain">
             <CrossFade images={IMAGES} interval={3800} />
@@ -74,11 +76,43 @@ export default function AogMain() {
                     </p>
 
                     <div className="aogActions">
-                        <Link className="aogBtn" to="/contact">Contact</Link>
-                        <Link className="aogBtn ghost" to="/services">Services</Link>
+                        <button
+                            type="button"
+                            className="aogBtn"
+                            onClick={() => setShowContact(true)}
+                        >
+                            Contact
+                        </button>
+                        {/*<Link className="aogBtn ghost" to="/services">Services</Link>*/}
                     </div>
                 </div>
             </div>
+
+            {showContact && (
+                <div className="contactModalBackdrop" role="dialog" aria-modal="true">
+                    <div className="contactModal">
+                        <div className="contactModalHeader">
+                            <h2>Contact A.O.G</h2>
+                            <button
+                                type="button"
+                                className="contactModalClose"
+                                onClick={() => setShowContact(false)}
+                                aria-label="닫기"
+                            >
+                                ✕
+                            </button>
+                        </div>
+
+                        <p className="contactModalText">
+                            여기에는 카카오톡 오픈채팅 QR, 연락처, 주소 등을 간단하게 넣을 예정입니다.
+                        </p>
+
+                        <div className="contactModalBody">
+                            {/* TODO: KakaoTalk 오픈채팅 QR 이미지 / 전화번호 / 주소 배치 */}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

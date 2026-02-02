@@ -22,9 +22,10 @@
     background-image: var(--aboutBg);
     background-size: cover;
     background-position: center;
-    filter: blur(2px) saturate(0.9) contrast(1.05);
-    opacity: 0.22;
-    transform: scale(1.03);
+    /* 경호 업체 느낌을 살리기 위해 흐림 제거, 약간만 톤 다운 */
+    filter: saturate(0.95) contrast(1.03);
+    opacity: 0.36;
+    transform: scale(1.01);
 }
 
 /* 전체 컨텐츠가 배경 위로 올라오게 */
