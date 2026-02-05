@@ -22,6 +22,11 @@ body {
     overflow: hidden;
 }
 
+:root {
+    --header-height: 0px;
+    --footer-height: 0px;
+}
+
 /* =========================
    HEADER
 ========================= */

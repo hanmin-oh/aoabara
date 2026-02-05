@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/home.css'
+import '../styles/aog.css'
 
 const IMAGES = [
     '/securities/left1.png',
@@ -39,53 +38,161 @@ function CrossFade({ images, interval = 3800 }: CrossFadeProps) {
     )
 }
 
+const SECTION_COUNT = 4
+
 export default function AogMain() {
     const [showContact, setShowContact] = useState(false)
+    const [currentSection, setCurrentSection] = useState(0)
+
+    useEffect(() => {
+        const handleScroll = (e: Event) => {
+            const wheelEvent = e as WheelEvent
+            wheelEvent.preventDefault()
+            
+            if (wheelEvent.deltaY > 0 && currentSection < SECTION_COUNT - 1) {
+                // 스크롤 다운
+                setCurrentSection(prev => prev + 1)
+            } else if (wheelEvent.deltaY < 0 && currentSection > 0) {
+                // 스크롤 업
+                setCurrentSection(prev => prev - 1)
+            }
+        }
+
+        const container = document.querySelector('.aogScrollWrapper')
+        if (container) {
+            container.addEventListener('wheel', handleScroll, { passive: false })
+            return () => container.removeEventListener('wheel', handleScroll)
+        }
+    }, [currentSection])
 
     return (
-        <div className="aogMain">
-            <CrossFade images={IMAGES} interval={3800} />
-
-            <div className="aogOverlay">
-                <div className="aogBrandRow">
-                    <img className="aogLogo" src="/logo/aog.png" alt="AOG Company" />
-                    <div className="aogBrandText">
-                        <div className="aogBrandTitle">A.O.G COMPANY</div>
-                        <div className="aogBrandSub">Professional Security &amp; Protection</div>
-                        <div className="aogPermit">*서울지방경찰청 허가 제 4915호*</div>
+        <div className="aogScrollWrapper">
+            <div 
+                className="aogScrollContainer"
+                style={{
+                    transform: `translate3d(0, -${currentSection * 100}vh, 0)`,
+                    height: `${SECTION_COUNT * 100}vh`,
+                }}
+            >
+                {/* Section 1: 메인 히어로 - 미니멀 */}
+                <section className="aogFullSection aogHeroSection">
+                    <CrossFade images={IMAGES} interval={3800} />
+                    <div className="heroContent">
+                        <div className="heroLogoBox">
+                            <img src="/logo/aog.png" alt="AOG" className="heroLogoImg" />
+                        </div>
+                        <h1 className="heroMainTitle">
+                            A.O.G<br/>COMPANY
+                        </h1>
+                        <p className="heroSubtitle">Professional Security & Protection</p>
+                        <div className="heroPermit">서울지방경찰청 허가 제 4915호</div>
+                        <div className="scrollHint">SCROLL DOWN</div>
                     </div>
-                </div>
+                </section>
 
-                <div className="aogCard">
-                    <h2>A.O.G Company</h2>
-                    <p>
-                        AOG(Armor of God) Company는 고객의 안전과 신뢰를 최우선으로 하는 전문 경호회사입니다.
-                        숙련된 인력과 체계적인 시스템을 바탕으로 신변, 행사, 의전 경호, 시설 보안경비,
-                        의전드라이버, 발렛서비스등 다양한 분야에서 전문적이고 믿음직한 서비스를 제공하며
-                        고객의 안전을 철저하게 보호합니다.
-                    </p>
+                {/* Section 2: 서비스 그리드 */}
+                <section className="aogFullSection aogServicesGrid">
+                    <div className="gridContainer">
+                        <div className="gridHeader">
+                            <h2 className="gridTitle">Our Services</h2>
+                            <p className="gridSubtitle">전문 경호 서비스</p>
+                        </div>
+                        
+                        <div className="servicesBoxGrid">
+                            <div className="serviceBox box1">
+                                <div className="serviceBoxNumber">01</div>
+                                <h3 className="serviceBoxTitle">신변 경호</h3>
+                                <p className="serviceBoxDesc">VIP 및 주요 인사 신변 보호</p>
+                                <div className="serviceBoxLine"></div>
+                            </div>
+                            <div className="serviceBox box2">
+                                <div className="serviceBoxNumber">02</div>
+                                <h3 className="serviceBoxTitle">행사 경호</h3>
+                                <p className="serviceBoxDesc">각종 행사 및 이벤트 보안</p>
+                                <div className="serviceBoxLine"></div>
+                            </div>
+                            <div className="serviceBox box3">
+                                <div className="serviceBoxNumber">03</div>
+                                <h3 className="serviceBoxTitle">시설 경비</h3>
+                                <p className="serviceBoxDesc">건물 및 시설 보안 관리</p>
+                                <div className="serviceBoxLine"></div>
+                            </div>
+                            <div className="serviceBox box4">
+                                <div className="serviceBoxNumber">04</div>
+                                <h3 className="serviceBoxTitle">의전 서비스</h3>
+                                <p className="serviceBoxDesc">의전 드라이버 및 발렛</p>
+                                <div className="serviceBoxLine"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                    <div className="aogDivider" />
+                {/* Section 3: 통계 - 기하학적 */}
+                <section className="aogFullSection aogStatsSection">
+                    <div className="statsContainer">
+                        <div className="statsHeader">
+                            <h2 className="statsTitle">Since 2009</h2>
+                            <div className="statsDivider"></div>
+                        </div>
+                        <div className="statsBoxes">
+                            <div className="statBox">
+                                <div className="statBoxInner">
+                                    <div className="statValue">15+</div>
+                                    <div className="statName">YEARS</div>
+                                    <div className="statDesc">전문 경력</div>
+                                </div>
+                            </div>
+                            <div className="statBox">
+                                <div className="statBoxInner">
+                                    <div className="statValue">500+</div>
+                                    <div className="statName">CLIENTS</div>
+                                    <div className="statDesc">고객사</div>
+                                </div>
+                            </div>
+                            <div className="statBox">
+                                <div className="statBoxInner">
+                                    <div className="statValue">50+</div>
+                                    <div className="statName">TEAM</div>
+                                    <div className="statDesc">전문 인력</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                    <h2>A.O.G (Armor of God) Company</h2>
-                    <p>
-                        AOG (Armor of God) Company is a professional security company prioritizing customer safety and trust.
-                        With experienced personnel and a systematic approach, we provide reliable and specialized services
-                        across various areas, including personal and event security, facility protection, protocol drivers,
-                        and valet services, ensuring thorough protection of our clients' safety.
-                    </p>
-
-                    <div className="aogActions">
+                {/* Section 4: Contact CTA */}
+                <section className="aogFullSection aogContactSection">
+                    <div className="contactContainer">
+                        <h2 className="contactTitle">Contact Us</h2>
+                        <p className="contactSubtitle">
+                            전문 경호 서비스 상담이 필요하신가요?<br/>
+                            언제든 문의해 주세요.
+                        </p>
                         <button
                             type="button"
-                            className="aogBtn"
+                            className="contactButton"
                             onClick={() => setShowContact(true)}
                         >
-                            Contact
+                            <span>문의하기</span>
                         </button>
-                        {/*<Link className="aogBtn ghost" to="/services">Services</Link>*/}
+                        <div className="contactInfo">
+                            <div className="contactLine"></div>
+                            <p className="contactText">Professional Security & Protection Since 2009</p>
+                        </div>
                     </div>
-                </div>
+                </section>
+            </div>
+
+            {/* 섹션 인디케이터 */}
+            <div className="sectionIndicator">
+                {Array.from({ length: SECTION_COUNT }).map((_, i) => (
+                    <button
+                        key={i}
+                        className={`indicator ${i === currentSection ? 'active' : ''}`}
+                        onClick={() => setCurrentSection(i)}
+                        aria-label={`Go to section ${i + 1}`}
+                    />
+                ))}
             </div>
 
             {showContact && (

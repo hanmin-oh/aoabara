@@ -31,6 +31,34 @@ interface HomeProps {
 }
 
 export default function Home({ onEnterTeamAog }: HomeProps) {
+    useEffect(() => {
+        // 스크롤 완전 차단
+        const preventScroll = (e: Event) => {
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+        }
+
+        const preventWheel = (e: WheelEvent) => {
+            e.preventDefault()
+        }
+
+        // 모든 스크롤 이벤트 차단
+        window.addEventListener('scroll', preventScroll, { passive: false })
+        window.addEventListener('wheel', preventWheel, { passive: false })
+        window.addEventListener('touchmove', preventScroll, { passive: false })
+        document.body.style.overflow = 'hidden'
+        document.documentElement.style.overflow = 'hidden'
+
+        return () => {
+            window.removeEventListener('scroll', preventScroll)
+            window.removeEventListener('wheel', preventWheel)
+            window.removeEventListener('touchmove', preventScroll)
+            document.body.style.overflow = ''
+            document.documentElement.style.overflow = ''
+        }
+    }, [])
+
     return (
         <div className="introLayout">
             <section className="introTwoCol">
