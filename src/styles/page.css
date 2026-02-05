@@ -2,12 +2,13 @@
    PAGE CONTENT LAYOUT
 ========================= */
 
+/* 일반 페이지 (AogMain 제외)용 컨테이너 스타일 */
 .content {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    overflow: hidden;
+    padding-top: var(--header-height); /* 헤더 높이만큼 여백 */
+    padding-bottom: var(--footer-height); /* 푸터 높이만큼 여백 */
+    box-sizing: border-box;
+    overflow-y: auto; /* 내부 스크롤 허용 */
 }
 
 /* TOP / MIDDLE = 1:1 */

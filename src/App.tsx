@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 import AogMain from './pages/AogMain'
 import About from './pages/About'
@@ -22,6 +24,8 @@ export default function App() {
 
     return (
         <div className="layout">
+            <Header onGoMain={() => setShowTeamAog(false)} />
+
             <div className="pageFrame">
                 <div key={location.pathname} className="pageAnim">
                     <Routes location={location}>
@@ -32,6 +36,8 @@ export default function App() {
                     </Routes>
                 </div>
             </div>
+
+            <Footer />
         </div>
     )
 }

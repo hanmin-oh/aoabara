@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import '../styles/aog.css'
 
 const IMAGES = [
@@ -43,30 +43,46 @@ const SECTION_COUNT = 4
 export default function AogMain() {
     const [showContact, setShowContact] = useState(false)
     const [currentSection, setCurrentSection] = useState(0)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const isScrolling = useRef(false)
 
     useEffect(() => {
-        const handleScroll = (e: Event) => {
-            const wheelEvent = e as WheelEvent
-            wheelEvent.preventDefault()
+        const handleWheel = (e: WheelEvent) => {
+            e.preventDefault()
             
-            if (wheelEvent.deltaY > 0 && currentSection < SECTION_COUNT - 1) {
+            if (isScrolling.current) return
+            
+            const delta = e.deltaY
+            // 민감도 조절: 작은 스크롤 무시
+            if (Math.abs(delta) < 10) return
+
+            if (delta > 0 && currentSection < SECTION_COUNT - 1) {
                 // 스크롤 다운
+                isScrolling.current = true
                 setCurrentSection(prev => prev + 1)
-            } else if (wheelEvent.deltaY < 0 && currentSection > 0) {
+                setTimeout(() => { isScrolling.current = false }, 800) // 애니메이션 시간만큼 딜레이
+            } else if (delta < 0 && currentSection > 0) {
                 // 스크롤 업
+                isScrolling.current = true
                 setCurrentSection(prev => prev - 1)
+                setTimeout(() => { isScrolling.current = false }, 800)
             }
         }
 
-        const container = document.querySelector('.aogScrollWrapper')
+        const container = containerRef.current
         if (container) {
-            container.addEventListener('wheel', handleScroll, { passive: false })
-            return () => container.removeEventListener('wheel', handleScroll)
+            container.addEventListener('wheel', handleWheel, { passive: false })
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('wheel', handleWheel)
+            }
         }
     }, [currentSection])
 
     return (
-        <div className="aogScrollWrapper">
+        <div className="aogScrollWrapper" ref={containerRef}>
             <div 
                 className="aogScrollContainer"
                 style={{

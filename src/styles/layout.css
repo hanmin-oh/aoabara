@@ -17,14 +17,14 @@ body {
 
 .layout {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    position: relative;
     overflow: hidden;
 }
 
 :root {
-    --header-height: 0px;
-    --footer-height: 0px;
+    --header-height: 60px;
+    --footer-height: 40px;
 }
 
 /* =========================
@@ -32,9 +32,15 @@ body {
 ========================= */
 
 .menu {
-    height: 56px;
-    flex-shrink: 0;
-    background: #111;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     color: #fff;
 
     display: flex;
@@ -42,6 +48,7 @@ body {
     justify-content: space-between;
 
     padding: 0 20px;
+    box-sizing: border-box;
 }
 .brand {
     display: flex;
@@ -76,12 +83,13 @@ body {
     text-decoration: none;
     padding: 8px 10px;
     opacity: 0.9;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .nav a.active {
-    opacity: 0.7;
-    text-decoration: underline;
-    text-underline-offset: 6px;
+    opacity: 1;
+    font-weight: 700;
 }
 
 /* =========================
@@ -89,26 +97,16 @@ body {
 ========================= */
 
 .pageFrame {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Header/Footer가 overlay이므로 전체 사용 */
+    position: relative;
+    /* overflow는 페이지별로 제어 */
 }
 
 /* 페이지 전환 애니메이션 */
 .pageAnim {
     height: 100%;
-    animation: fadeSlideIn 180ms ease-out;
-}
-
-@keyframes fadeSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    /* 애니메이션은 유지하되 transform 충돌 주의 (AogMain 등) */
 }
 
 /* =========================
@@ -116,9 +114,16 @@ body {
 ========================= */
 
 .footer {
-    height: 40px;
-    flex-shrink: 0;
-    background: #eee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.9);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #888;
+    font-size: 12px;
 
     display: flex;
     align-items: center;
