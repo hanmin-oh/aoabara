@@ -51,6 +51,8 @@ export default function AogMain({ onGoMain }: AogMainProps) {
     const [currentSection, setCurrentSection] = useState(0)
     const containerRef = useRef<HTMLDivElement>(null)
     const isScrolling = useRef(false)
+    const touchStart = useRef(0)
+    const touchEnd = useRef(0)
 
     const handleServiceClick = (category: string) => {
         navigate(`/portfolio?category=${category}`)
@@ -76,14 +78,47 @@ export default function AogMain({ onGoMain }: AogMainProps) {
             }
         }
 
+        const handleTouchStart = (e: TouchEvent) => {
+            touchStart.current = e.touches[0].clientY
+        }
+
+        const handleTouchMove = (e: TouchEvent) => {
+            touchEnd.current = e.touches[0].clientY
+        }
+
+        const handleTouchEnd = () => {
+            if (isScrolling.current) return
+
+            const distance = touchStart.current - touchEnd.current
+            const minSwipeDistance = 50
+
+            if (Math.abs(distance) < minSwipeDistance) return
+
+            if (distance > 0 && currentSection < SECTION_COUNT - 1) {
+                isScrolling.current = true
+                setCurrentSection(prev => prev + 1)
+                setTimeout(() => { isScrolling.current = false }, 800)
+            } else if (distance < 0 && currentSection > 0) {
+                isScrolling.current = true
+                setCurrentSection(prev => prev - 1)
+                setTimeout(() => { isScrolling.current = false }, 800)
+            }
+        }
+
         const container = containerRef.current
         if (container) {
             container.addEventListener('wheel', handleWheel, { passive: false })
+            container.addEventListener('touchstart', handleTouchStart, { passive: true })
+            container.addEventListener('touchmove', handleTouchMove, { passive: true })
+            container.addEventListener('touchend', handleTouchEnd, { passive: true })
         }
 
         return () => {
             if (container) {
                 container.removeEventListener('wheel', handleWheel)
+                container.removeEventListener('touchstart', handleTouchStart)
+                container.removeEventListener('touchmove', handleTouchMove)
+                container.removeEventListener('touchend', handleTouchEnd)
             }
         }
     }, [currentSection])
