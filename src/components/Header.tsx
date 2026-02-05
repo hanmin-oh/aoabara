@@ -20,7 +20,7 @@ export default function Header({ onGoMain }: HeaderProps) {
             <nav className="nav">
                 <NavLink to="/" end>Home</NavLink>
                 <NavLink to="/about">About Us</NavLink>
-                <NavLink to="/services">Our Services</NavLink>
+                <NavLink to="/portfolio">Portfolio</NavLink>
                 <NavLink to="/contact">Contact Us</NavLink>
             </nav>
         </header>

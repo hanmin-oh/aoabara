@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import '../styles/aog.css'
 
 const IMAGES = [
@@ -13,7 +14,7 @@ interface CrossFadeProps {
     interval?: number
 }
 
-function CrossFade({ images, interval = 3800 }: CrossFadeProps) {
+function CrossFade({ images, interval = 4000 }: CrossFadeProps) {
     const [idx, setIdx] = useState(0)
 
     useEffect(() => {
@@ -24,27 +25,36 @@ function CrossFade({ images, interval = 3800 }: CrossFadeProps) {
     }, [images.length, interval])
 
     return (
-        <div className="aogHero">
+        <div className="hero-bg">
             {images.map((src, i) => (
                 <img
                     key={src}
                     src={src}
                     alt=""
-                    className={`aogHeroImg ${i === idx ? 'on' : ''}`}
+                    className={`hero-img ${i === idx ? 'active' : ''}`}
                 />
             ))}
-            <div className="aogHeroShade" />
+            <div className="hero-overlay" />
         </div>
     )
 }
 
 const SECTION_COUNT = 4
 
-export default function AogMain() {
+interface AogMainProps {
+    onGoMain: () => void
+}
+
+export default function AogMain({ onGoMain }: AogMainProps) {
+    const navigate = useNavigate()
     const [showContact, setShowContact] = useState(false)
     const [currentSection, setCurrentSection] = useState(0)
     const containerRef = useRef<HTMLDivElement>(null)
     const isScrolling = useRef(false)
+
+    const handleServiceClick = (category: string) => {
+        navigate(`/portfolio?category=${category}`)
+    }
 
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
@@ -53,16 +63,13 @@ export default function AogMain() {
             if (isScrolling.current) return
             
             const delta = e.deltaY
-            // 민감도 조절: 작은 스크롤 무시
             if (Math.abs(delta) < 10) return
 
             if (delta > 0 && currentSection < SECTION_COUNT - 1) {
-                // 스크롤 다운
                 isScrolling.current = true
                 setCurrentSection(prev => prev + 1)
-                setTimeout(() => { isScrolling.current = false }, 800) // 애니메이션 시간만큼 딜레이
+                setTimeout(() => { isScrolling.current = false }, 800)
             } else if (delta < 0 && currentSection > 0) {
-                // 스크롤 업
                 isScrolling.current = true
                 setCurrentSection(prev => prev - 1)
                 setTimeout(() => { isScrolling.current = false }, 800)
@@ -82,125 +89,146 @@ export default function AogMain() {
     }, [currentSection])
 
     return (
-        <div className="aogScrollWrapper" ref={containerRef}>
+        <div className="aog-wrapper" ref={containerRef}>
+            {/* Header - Only visible on first section */}
+            <header className={`aog-header ${currentSection === 0 ? 'visible' : 'hidden'}`}>
+                <div
+                    className="aog-brand"
+                    role="button"
+                    onClick={onGoMain}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <img src="/logo/aog.png" alt="AOG" className="aog-brand-logo" />
+                    <span className="aog-brand-text">Team A.O.G</span>
+                </div>
+
+                <nav className="aog-nav">
+                    <NavLink to="/" end>Home</NavLink>
+                    <NavLink to="/about">About Us</NavLink>
+                    <NavLink to="/portfolio">Portfolio</NavLink>
+                    <NavLink to="/contact">Contact Us</NavLink>
+                </nav>
+            </header>
+
             <div 
-                className="aogScrollContainer"
+                className="aog-container"
                 style={{
-                    transform: `translate3d(0, -${currentSection * 100}vh, 0)`,
-                    height: `${SECTION_COUNT * 100}vh`,
+                    transform: `translateY(-${currentSection * 100}vh)`,
                 }}
             >
-                {/* Section 1: 메인 히어로 - 미니멀 */}
-                <section className="aogFullSection aogHeroSection">
-                    <CrossFade images={IMAGES} interval={3800} />
-                    <div className="heroContent">
-                        <div className="heroLogoBox">
-                            <img src="/logo/aog.png" alt="AOG" className="heroLogoImg" />
+                {/* Section 1: Hero */}
+                <section className="section section-hero">
+                    <CrossFade images={IMAGES} />
+                    <div className="section-content">
+                        <div className="hero-logo">
+                            <img src="/logo/aog.png" alt="AOG" />
                         </div>
-                        <h1 className="heroMainTitle">
+                        <h1 className="hero-title">
                             A.O.G<br/>COMPANY
                         </h1>
-                        <p className="heroSubtitle">Professional Security & Protection</p>
-                        <div className="heroPermit">서울지방경찰청 허가 제 4915호</div>
-                        <div className="scrollHint">SCROLL DOWN</div>
+                        <p className="hero-subtitle">Professional Security & Protection</p>
+                        <p className="hero-permit">서울지방경찰청 허가 제 4915호</p>
                     </div>
+                    <div className="scroll-hint">SCROLL DOWN</div>
                 </section>
 
-                {/* Section 2: 서비스 그리드 */}
-                <section className="aogFullSection aogServicesGrid">
-                    <div className="gridContainer">
-                        <div className="gridHeader">
-                            <h2 className="gridTitle">Our Services</h2>
-                            <p className="gridSubtitle">전문 경호 서비스</p>
+                {/* Section 2: Services */}
+                <section className="section section-services">
+                    <div className="section-content">
+                        <div 
+                            className="section-header" 
+                            onClick={() => navigate('/portfolio')}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <h2>PORTFOLIO</h2>
+                            <p>전문 경호 서비스</p>
                         </div>
                         
-                        <div className="servicesBoxGrid">
-                            <div className="serviceBox box1">
-                                <div className="serviceBoxNumber">01</div>
-                                <h3 className="serviceBoxTitle">신변 경호</h3>
-                                <p className="serviceBoxDesc">VIP 및 주요 인사 신변 보호</p>
-                                <div className="serviceBoxLine"></div>
+                        <div className="services-grid">
+                            <div className="service-card" onClick={() => handleServiceClick('personal')}>
+                                <div className="service-number">01</div>
+                                <h3>신변 경호</h3>
+                                <p>VIP 및 주요 인사 신변 보호</p>
                             </div>
-                            <div className="serviceBox box2">
-                                <div className="serviceBoxNumber">02</div>
-                                <h3 className="serviceBoxTitle">행사 경호</h3>
-                                <p className="serviceBoxDesc">각종 행사 및 이벤트 보안</p>
-                                <div className="serviceBoxLine"></div>
+                            <div className="service-card" onClick={() => handleServiceClick('event')}>
+                                <div className="service-number">02</div>
+                                <h3>행사 경호</h3>
+                                <p>각종 행사 및 이벤트 보안</p>
                             </div>
-                            <div className="serviceBox box3">
-                                <div className="serviceBoxNumber">03</div>
-                                <h3 className="serviceBoxTitle">시설 경비</h3>
-                                <p className="serviceBoxDesc">건물 및 시설 보안 관리</p>
-                                <div className="serviceBoxLine"></div>
+                            <div className="service-card" onClick={() => handleServiceClick('protocol')}>
+                                <div className="service-number">03</div>
+                                <h3>의전 경호</h3>
+                                <p>공식 일정 수행 및 동선 관리</p>
                             </div>
-                            <div className="serviceBox box4">
-                                <div className="serviceBoxNumber">04</div>
-                                <h3 className="serviceBoxTitle">의전 서비스</h3>
-                                <p className="serviceBoxDesc">의전 드라이버 및 발렛</p>
-                                <div className="serviceBoxLine"></div>
+                            <div className="service-card" onClick={() => handleServiceClick('facility')}>
+                                <div className="service-number">04</div>
+                                <h3>시설 보안경비</h3>
+                                <p>건물 및 시설 보안 관리</p>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Section 3: 통계 - 기하학적 */}
-                <section className="aogFullSection aogStatsSection">
-                    <div className="statsContainer">
-                        <div className="statsHeader">
-                            <h2 className="statsTitle">Since 2009</h2>
-                            <div className="statsDivider"></div>
-                        </div>
-                        <div className="statsBoxes">
-                            <div className="statBox">
-                                <div className="statBoxInner">
-                                    <div className="statValue">15+</div>
-                                    <div className="statName">YEARS</div>
-                                    <div className="statDesc">전문 경력</div>
-                                </div>
+                            <div className="service-card" onClick={() => handleServiceClick('driver')}>
+                                <div className="service-number">05</div>
+                                <h3>의전 드라이버</h3>
+                                <p>안전 운행 및 이동 지원</p>
                             </div>
-                            <div className="statBox">
-                                <div className="statBoxInner">
-                                    <div className="statValue">500+</div>
-                                    <div className="statName">CLIENTS</div>
-                                    <div className="statDesc">고객사</div>
-                                </div>
-                            </div>
-                            <div className="statBox">
-                                <div className="statBoxInner">
-                                    <div className="statValue">50+</div>
-                                    <div className="statName">TEAM</div>
-                                    <div className="statDesc">전문 인력</div>
-                                </div>
+                            <div className="service-card" onClick={() => handleServiceClick('valet')}>
+                                <div className="service-number">06</div>
+                                <h3>발렛 서비스</h3>
+                                <p>행사 및 시설 차량 관리</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Section 4: Contact CTA */}
-                <section className="aogFullSection aogContactSection">
-                    <div className="contactContainer">
-                        <h2 className="contactTitle">Contact Us</h2>
-                        <p className="contactSubtitle">
+                {/* Section 3: Stats */}
+                <section className="section section-stats">
+                    <div className="section-content">
+                        <div className="section-header">
+                            <h2>Since 2009</h2>
+                        </div>
+                        
+                        <div className="stats-grid">
+                            <div className="stat-card">
+                                <div className="stat-value">15+</div>
+                                <div className="stat-label">YEARS</div>
+                                <div className="stat-desc">전문 경력</div>
+                            </div>
+                            <div className="stat-card">
+                                <div className="stat-value">500+</div>
+                                <div className="stat-label">CLIENTS</div>
+                                <div className="stat-desc">고객사</div>
+                            </div>
+                            <div className="stat-card">
+                                <div className="stat-value">50+</div>
+                                <div className="stat-label">TEAM</div>
+                                <div className="stat-desc">전문 인력</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Section 4: Contact */}
+                <section className="section section-contact">
+                    <div className="section-content">
+                        <h2>Contact Us</h2>
+                        <p className="contact-text">
                             전문 경호 서비스 상담이 필요하신가요?<br/>
                             언제든 문의해 주세요.
                         </p>
                         <button
-                            type="button"
-                            className="contactButton"
+                            className="contact-button"
                             onClick={() => setShowContact(true)}
                         >
-                            <span>문의하기</span>
+                            문의하기
                         </button>
-                        <div className="contactInfo">
-                            <div className="contactLine"></div>
-                            <p className="contactText">Professional Security & Protection Since 2009</p>
-                        </div>
+                        <p className="contact-footer">
+                            Professional Security & Protection Since 2009
+                        </p>
                     </div>
                 </section>
             </div>
 
-            {/* 섹션 인디케이터 */}
-            <div className="sectionIndicator">
+            {/* Section Indicators */}
+            <div className={`section-indicators ${currentSection === 1 ? 'dark' : ''}`}>
                 {Array.from({ length: SECTION_COUNT }).map((_, i) => (
                     <button
                         key={i}
@@ -211,27 +239,21 @@ export default function AogMain() {
                 ))}
             </div>
 
+            {/* Contact Modal */}
             {showContact && (
-                <div className="contactModalBackdrop" role="dialog" aria-modal="true">
-                    <div className="contactModal">
-                        <div className="contactModalHeader">
+                <div className="modal-backdrop" onClick={() => setShowContact(false)}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
                             <h2>Contact A.O.G</h2>
                             <button
-                                type="button"
-                                className="contactModalClose"
+                                className="modal-close"
                                 onClick={() => setShowContact(false)}
-                                aria-label="닫기"
                             >
                                 ✕
                             </button>
                         </div>
-
-                        <p className="contactModalText">
-                            여기에는 카카오톡 오픈채팅 QR, 연락처, 주소 등을 간단하게 넣을 예정입니다.
-                        </p>
-
-                        <div className="contactModalBody">
-                            {/* TODO: KakaoTalk 오픈채팅 QR 이미지 / 전화번호 / 주소 배치 */}
+                        <div className="modal-body">
+                            <p>여기에 카카오톡 오픈채팅 QR, 연락처, 주소 등을 배치합니다.</p>
                         </div>
                     </div>
                 </div>

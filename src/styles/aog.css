@@ -1,768 +1,533 @@
-/* =========================
-   AOG MAIN - Geometric & Modern Style
-   Reference: The Bridge (http://r1518.realserver3.com/)
-========================= */
+/* ===================================
+   AOG Main - Clean & Modern
+=================================== */
 
-/* 전역 설정 */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-:root {
-    --bg-dark: #0a0a0a;
-    --bg-light: #ffffff;
-    --bg-gray: #1a1a1a;
-    --text-main: #111111;
-    --text-white: #ffffff;
-    --accent: #ffffff;
-}
-
-.aogFullSection {
+/* Wrapper & Container */
+.aog-wrapper {
     width: 100%;
     height: 100vh;
-    min-height: 100%;
-    position: relative;
     overflow: hidden;
-    box-sizing: border-box;
-}
-
-/* =========================
-   Section 1: Hero (Main)
-========================= */
-.aogHeroSection {
-    position: relative;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    color: #fff;
-}
-
-/* 기하학적 장식 - 좌상단 */
-.aogHeroSection::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    width: 80px;
-    height: 80px;
-    border: 2px solid rgba(255,255,255,0.1);
-    transform: rotate(45deg);
-    z-index: 3;
-}
-
-/* 기하학적 장식 - 우하단 */
-.aogHeroSection::after {
-    content: '';
-    position: absolute;
-    bottom: 80px;
-    right: 100px;
-    width: 60px;
-    height: 60px;
-    border: 2px solid rgba(255,255,255,0.1);
-    z-index: 3;
-}
-
-.aogHero {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
-.aogHeroImg {
-    position: absolute;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: scale(1.05);
-}
-
-.aogHeroImg.on {
-    opacity: 0.6; /* 이미지 밝기 조절 */
-    transform: scale(1);
-}
-
-.aogHeroShade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-}
-
-.heroContent {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-}
-
-.heroLogoBox {
-    margin-bottom: 24px;
-    animation: fadeUp 1s ease-out;
-}
-
-.heroLogoImg {
-    width: 60px;
-    height: auto;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-}
-
-.heroMainTitle {
-    font-size: clamp(40px, 8vw, 100px);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    animation: fadeUp 1s ease-out 0.2s backwards;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.heroSubtitle {
-    font-size: clamp(14px, 2vw, 18px);
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.9;
-    margin-bottom: 12px;
-    animation: fadeUp 1s ease-out 0.4s backwards;
-}
-
-.heroPermit {
-    font-size: 13px;
-    opacity: 0.6;
-    letter-spacing: 0.05em;
-    animation: fadeUp 1s ease-out 0.5s backwards;
-}
-
-.scrollHint {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    opacity: 0.6;
-    animation: bounce 2s infinite;
-}
-
-/* =========================
-   Section 2: Services (White Theme)
-========================= */
-.aogServicesGrid {
-    background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 50%, #f8f8f8 100%);
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
 
-/* 기하학적 배경 장식 - 삼각형 패턴 */
-.aogServicesGrid::before {
-    content: '';
-    position: absolute;
+/* Header */
+.aog-header {
+    position: fixed;
     top: 0;
-    right: 0;
-    width: 40vw;
-    height: 100%;
-    background: 
-        linear-gradient(135deg, transparent 0%, transparent 49%, rgba(0,0,0,0.02) 50%, transparent 51%, transparent 100%),
-        linear-gradient(-135deg, transparent 0%, transparent 49%, rgba(0,0,0,0.02) 50%, transparent 51%, transparent 100%);
-    background-size: 80px 80px;
-    z-index: 0;
-}
-
-/* 왼쪽 상단 기하학적 요소 */
-.aogServicesGrid::after {
-    content: '';
-    position: absolute;
-    top: 60px;
-    left: 60px;
-    width: 120px;
-    height: 120px;
-    border: 2px solid rgba(0,0,0,0.08);
-    transform: rotate(45deg);
-    z-index: 0;
-}
-
-.gridContainer {
+    left: 0;
     width: 100%;
-    max-width: 1400px;
-    padding: 60px 40px;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.05);
-}
-
-.gridHeader {
-    margin-bottom: 40px;
-    text-align: left;
-    border-left: 4px solid #000;
-    padding-left: 20px;
-}
-
-.gridTitle {
-    font-size: clamp(32px, 5vw, 64px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-}
-
-.gridSubtitle {
-    font-size: 16px;
-    font-weight: 500;
-    color: #666;
-    letter-spacing: 0.1em;
-}
-
-.servicesBoxGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0; /* 테두리 겹침 효과를 위해 gap 제거 */
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
-}
-
-.serviceBox {
-    background: rgba(255,255,255,0.8);
-    padding: 40px 30px;
-    border-right: 1px solid rgba(0,0,0,0.08);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 320px;
-    cursor: default;
-    backdrop-filter: blur(5px);
-}
-
-/* 각 박스의 좌상단 기하학적 장식 */
-.serviceBox::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 30px;
-    height: 30px;
-    border: 2px solid rgba(0,0,0,0.1);
-    transform: rotate(45deg);
-    transition: all 0.4s ease;
-}
-
-.serviceBox:hover {
-    background: #000;
-    color: #fff;
-    transform: scale(1.03);
-    z-index: 10;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    border-color: #000;
-}
-
-.serviceBox:hover::before {
-    border-color: rgba(255,255,255,0.3);
-    transform: rotate(135deg);
-}
-
-.serviceBoxNumber {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    opacity: 0.4;
-}
-
-.serviceBox:hover .serviceBoxNumber {
-    opacity: 0.6;
-    color: #fff;
-}
-
-.serviceBoxTitle {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 16px;
-    line-height: 1.2;
-}
-
-.serviceBoxDesc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #666;
-    margin-bottom: 30px;
-    flex-grow: 1;
-}
-
-.serviceBox:hover .serviceBoxDesc {
-    color: #aaa;
-}
-
-.serviceBoxLine {
-    width: 20px;
-    height: 2px;
-    background: #000;
-    transition: width 0.3s ease;
-}
-
-.serviceBox:hover .serviceBoxLine {
-    width: 100%;
-    background: #fff;
-}
-
-
-/* =========================
-   Section 3: Stats (Dark Theme)
-========================= */
-.aogStatsSection {
-    background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* 배경 그리드 패턴 */
-.aogStatsSection::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 100px 100px;
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-/* 기하학적 장식 - 원형 */
-.aogStatsSection::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 50%;
-    z-index: 0;
-}
-
-.statsContainer {
-    width: 100%;
-    max-width: 1200px;
-    padding: 60px 40px;
-    position: relative;
-    z-index: 2;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-
-.statsHeader {
-    text-align: center;
-    margin-bottom: 80px;
-}
-
-.statsTitle {
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #fff, #888);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.statsDivider {
-    width: 1px;
     height: 60px;
-    background: #fff;
-    margin: 0 auto;
-    opacity: 0.3;
-}
-
-.statsBoxes {
+    z-index: 1000;
+    background: rgba(17, 17, 17, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.statBox {
-    flex: 1;
-    min-width: 250px;
-    text-align: center;
-    padding: 40px 20px;
-    position: relative;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.4s ease;
-}
-
-.statBox:hover {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.1);
-    transform: translateY(-10px);
-}
-
-.statBoxInner {
-    display: inline-flex;
-    flex-direction: column;
     align-items: center;
-    position: relative;
-}
-
-/* 원형 장식 */
-.statBoxInner::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 180px;
-    height: 180px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50%;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
     transition: all 0.5s ease;
 }
 
-.statBox:hover .statBoxInner::before {
-    border-color: rgba(255,255,255,0.5);
-    transform: translate(-50%, -50%) scale(1.1);
+.aog-header.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.statValue {
-    font-size: clamp(60px, 8vw, 90px);
+.aog-header.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+.aog-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.aog-brand-logo {
+    height: 28px;
+    background: #fff;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.aog-brand-text {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.aog-nav {
+    display: flex;
+    gap: 16px;
+}
+
+.aog-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 10px;
+    opacity: 0.9;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.aog-nav a.active {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.aog-container {
+    width: 100%;
+    height: 400vh;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section Base */
+.section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.section-content {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.section-header {
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+/* ===================================
+   Section 1: Hero
+=================================== */
+.section-hero {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-img.active {
+    opacity: 0.5;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+}
+
+.section-hero .section-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-logo {
+    margin-bottom: 30px;
+}
+
+.hero-logo img {
+    width: 70px;
+    height: auto;
+}
+
+.hero-title {
+    font-size: clamp(50px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: clamp(14px, 2vw, 20px);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.hero-permit {
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    opacity: 0.95;
+    animation: bounce 2s infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.scroll-hint::after {
+    content: '›››';
+    font-size: 20px;
+    line-height: 0.5;
+    transform: rotate(90deg);
+    opacity: 0.9;
+}
+
+@keyframes bounce {
+    0%, 100% { 
+        transform: translate(-50%, 0); 
+    }
+    50% { 
+        transform: translate(-50%, 10px); 
+    }
+}
+
+/* ===================================
+   Section 2: Services
+=================================== */
+.section-services {
+    background: #fafafa;
+    color: #111;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: #fff;
+    padding: 40px 30px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    text-align: left;
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: #111;
+    background: #111;
+    color: #fff;
+}
+
+.service-card:hover .service-number {
+    color: #fff;
+}
+
+.service-card:hover p {
+    color: #ccc;
+}
+
+.service-number {
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.3;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* ===================================
+   Section 3: Stats
+=================================== */
+.section-stats {
+    background: #111;
+    color: #fff;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 60px;
+}
+
+.stat-card {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: clamp(60px, 8vw, 100px);
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 10px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
 }
 
-.statName {
+.stat-label {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.3em;
     color: #888;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.statDesc {
+.stat-desc {
     font-size: 14px;
     color: #666;
 }
 
-
-/* =========================
-   Section 4: Contact (Accent Theme)
-========================= */
-.aogContactSection {
-    background: linear-gradient(135deg, #1a1a1a 0%, #242424 50%, #1a1a1a 100%);
+/* ===================================
+   Section 4: Contact
+=================================== */
+.section-contact {
+    background: #1a1a1a;
     color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
 }
 
-/* 대각선 배경 장식 */
-.aogContactSection::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    width: 150%;
-    height: 150%;
-    background: 
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 40px,
-            rgba(255,255,255,0.02) 40px,
-            rgba(255,255,255,0.02) 80px
-        );
-    z-index: 0;
-}
-
-/* 기하학적 사각형 장식 */
-.aogContactSection::after {
-    content: '';
-    position: absolute;
-    bottom: 80px;
-    right: 80px;
-    width: 200px;
-    height: 200px;
-    border: 2px solid rgba(255,255,255,0.08);
-    transform: rotate(15deg);
-    z-index: 0;
-}
-
-.contactContainer {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    padding: 80px 60px;
-    border: 2px solid rgba(255,255,255,0.1);
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-
-/* 좌상단 장식 */
-.contactContainer::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 60px;
-    height: 60px;
-    border-top: 3px solid rgba(255,255,255,0.3);
-    border-left: 3px solid rgba(255,255,255,0.3);
-}
-
-/* 우하단 장식 */
-.contactContainer::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    width: 60px;
-    height: 60px;
-    border-bottom: 3px solid rgba(255,255,255,0.3);
-    border-right: 3px solid rgba(255,255,255,0.3);
-}
-
-.contactTitle {
-    font-size: clamp(36px, 5vw, 60px);
+.section-contact h2 {
+    font-size: clamp(40px, 6vw, 70px);
     font-weight: 900;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
+    margin-bottom: 30px;
 }
 
-.contactSubtitle {
+.contact-text {
     font-size: 18px;
     line-height: 1.8;
     color: #aaa;
     margin-bottom: 50px;
-    font-weight: 300;
 }
 
-.contactButton {
-    display: inline-block;
-    padding: 24px 80px;
+.contact-button {
+    padding: 20px 60px;
     background: #fff;
     color: #000;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
+    font-size: 16px;
+    font-weight: 700;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
 }
 
-.contactButton:hover {
+.contact-button:hover {
     background: #000;
     color: #fff;
     box-shadow: 0 0 0 2px #fff inset;
 }
 
-.contactInfo {
+.contact-footer {
     margin-top: 60px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.contactText {
     font-size: 12px;
+    opacity: 0.4;
     letter-spacing: 0.2em;
-    opacity: 0.5;
-    text-transform: uppercase;
 }
 
-
-/* =========================
-   Indicators & Utils
-========================= */
-.sectionIndicator {
+/* ===================================
+   Section Indicators
+=================================== */
+.section-indicators {
     position: fixed;
     right: 40px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     z-index: 100;
+    transition: all 0.3s ease;
 }
 
 .indicator {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: rgba(255,255,255,0.3);
     border: none;
-    border-radius: 0; /* 사각형 */
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
     padding: 0;
 }
 
-/* 밝은 섹션(Section 2)에서는 인디케이터 색상 반전 필요 */
-/* 이는 JS로 제어하거나 mix-blend-mode 사용 */
-.sectionIndicator {
-    mix-blend-mode: difference;
-    color: #fff;
-}
-
 .indicator.active {
     background: #fff;
-    transform: scale(2);
+    transform: scale(1.5);
 }
 
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Dark indicators for light sections */
+.section-indicators.dark .indicator {
+    background: rgba(0,0,0,0.3);
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 10px); }
+.section-indicators.dark .indicator.active {
+    background: #111;
 }
 
-/* =========================
-   Mobile Optimization
-========================= */
+/* ===================================
+   Modal
+=================================== */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* ===================================
+   Responsive
+=================================== */
 @media (max-width: 1024px) {
-    .servicesBoxGrid {
+    .aog-header {
+        padding: 0 20px;
+    }
+
+    .aog-nav {
+        gap: 12px;
+    }
+
+    .aog-nav a {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    .services-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
-    .serviceBox {
-        min-height: 250px;
-    }
-    
-    .gridContainer {
-        padding: 50px 30px;
-    }
-    
-    .statsContainer {
-        padding: 50px 30px;
-    }
-    
-    .aogStatsSection::before {
-        width: 500px;
-        height: 500px;
+
+    .stats-grid {
+        gap: 50px;
     }
 }
 
 @media (max-width: 768px) {
-    .aogServicesGrid::before,
-    .aogServicesGrid::after {
-        display: none; /* 모바일 배경 장식 제거 */
+    .aog-header {
+        padding: 0 15px;
+        height: auto;
+        min-height: 60px;
     }
 
-    .gridContainer {
+    .aog-nav {
+        gap: 10px;
+    }
+
+    .aog-nav a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    .aog-brand-logo {
+        height: 24px;
+    }
+
+    .section {
         padding: 30px 20px;
-        align-items: flex-start;
-        background: rgba(255,255,255,0.7);
-    }
-    
-    .gridHeader {
-        border-left: 0;
-        border-bottom: 3px solid #000;
-        padding-left: 0;
-        padding-bottom: 10px;
-        width: 100%;
     }
 
-    .servicesBoxGrid {
-        grid-template-columns: 1fr;
-        border: none;
-        gap: 16px;
-        width: 100%;
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
-    .serviceBox {
-        border: 1px solid rgba(0,0,0,0.1);
-        background: rgba(255,255,255,0.9);
-        min-height: auto;
-        padding: 24px;
-    }
-    
-    .serviceBox::before {
-        width: 20px;
-        height: 20px;
-        top: 15px;
-        right: 15px;
+    .service-card {
+        padding: 30px 20px;
     }
 
-    .statsContainer {
-        padding: 40px 20px;
-    }
-
-    .statsBoxes {
+    .stats-grid {
         flex-direction: column;
-        gap: 60px;
-    }
-    
-    .statBox {
-        min-width: auto;
-        padding: 30px 20px;
-    }
-    
-    .statBoxInner::before {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .aogStatsSection::before {
-        width: 400px;
-        height: 400px;
+        gap: 40px;
     }
 
-    .contactContainer {
-        padding: 50px 30px;
-    }
-    
-    .contactContainer::before,
-    .contactContainer::after {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .aogContactSection::after {
-        width: 100px;
-        height: 100px;
-        bottom: 40px;
-        right: 40px;
+    .section-indicators {
+        right: 20px;
+        gap: 10px;
     }
 
-    .sectionIndicator {
-        right: 15px;
+    .indicator {
+        width: 6px;
+        height: 6px;
     }
 }
