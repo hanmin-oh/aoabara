@@ -58,6 +58,7 @@ export default function Portfolio() {
     const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isAddMode, setIsAddMode] = useState(false)
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
@@ -226,11 +227,12 @@ export default function Portfolio() {
                     <div className="portfolio-grid">
                         {filteredItems.map((item) => (
                             <div key={item.id} className="portfolio-card">
-                                <div className="portfolio-image">
+                                <div 
+                                    className="portfolio-image"
+                                    onClick={() => !isAdminMode && setLightboxImage(item.image)}
+                                    style={{ cursor: isAdminMode ? 'default' : 'pointer' }}
+                                >
                                     <img src={item.image} alt={item.title} />
-                                    <div className="portfolio-overlay">
-                                        <div className="portfolio-number">{item.id}</div>
-                                    </div>
                                     {isAdminMode && (
                                         <div className="admin-controls">
                                             <button 
@@ -325,6 +327,23 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
+                </div>
+            )}
+
+            {/* Lightbox */}
+            {lightboxImage && (
+                <div className="lightbox" onClick={() => setLightboxImage(null)}>
+                    <button 
+                        className="lightbox-close"
+                        onClick={() => setLightboxImage(null)}
+                    >
+                        ✕
+                    </button>
+                    <img 
+                        src={lightboxImage} 
+                        alt="확대 이미지" 
+                        onClick={(e) => e.stopPropagation()}
+                    />
                 </div>
             )}
         </div>
