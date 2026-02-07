@@ -49,6 +49,7 @@ export default function AogMain({ onGoMain }: AogMainProps) {
     const navigate = useNavigate()
     const [showContact, setShowContact] = useState(false)
     const [currentSection, setCurrentSection] = useState(0)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
     const isScrolling = useRef(false)
     const touchStart = useRef(0)
@@ -137,13 +138,40 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                     <span className="aog-brand-text">Team A.O.G</span>
                 </div>
 
-                <nav className="aog-nav">
+                <nav className="aog-nav desktop-nav">
                     <NavLink to="/" end>Home</NavLink>
                     <NavLink to="/about">About Us</NavLink>
                     <NavLink to="/portfolio">Portfolio</NavLink>
                     <NavLink to="/contact">Contact Us</NavLink>
                 </nav>
+
+                <button 
+                    className="aog-hamburger-btn"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="메뉴"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </header>
+
+            {/* Mobile Menu */}
+            <div className={`aog-mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+                <div className="aog-mobile-menu-overlay" onClick={() => setIsMenuOpen(false)} />
+                <nav className="aog-mobile-nav">
+                    <button 
+                        className="aog-close-btn"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        ✕
+                    </button>
+                    <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+                    <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+                    <NavLink to="/portfolio" onClick={() => setIsMenuOpen(false)}>Portfolio</NavLink>
+                    <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
+                </nav>
+            </div>
 
             <div 
                 className="aog-container"
