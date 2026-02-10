@@ -17,15 +17,14 @@ export default function Header({ onGoMain }: HeaderProps) {
                     onClick={onGoMain}
                     style={{ cursor: 'pointer' }}
                 >
-                    <img src="/logo/aog.png" alt="AOG Company Logo" className="brandLogo" />
-                    <span className="brandText">Team A.O.G</span>
+                    <img src="/logo/header_1.png" alt="AOG Company Logo" className="brandLogo" />
                 </div>
 
                 <nav className="nav desktop-nav">
-                    <NavLink to="/" end>Home</NavLink>
-                    <NavLink to="/about">About Us</NavLink>
-                    <NavLink to="/portfolio">Portfolio</NavLink>
-                    <NavLink to="/contact">Contact Us</NavLink>
+                    <NavLink to="/" end>회사소개</NavLink>
+                    <NavLink to="/about">사업영역</NavLink>
+                    <NavLink to="/portfolio">주요실적</NavLink>
+                    <NavLink to="/contact">상담</NavLink>
                 </nav>
 
                 <button 
@@ -49,10 +48,10 @@ export default function Header({ onGoMain }: HeaderProps) {
                     >
                         ✕
                     </button>
-                    <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-                    <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
-                    <NavLink to="/portfolio" onClick={() => setIsMenuOpen(false)}>Portfolio</NavLink>
-                    <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
+                    <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>회사소개</NavLink>
+                    <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>사업영역</NavLink>
+                    <NavLink to="/portfolio" onClick={() => setIsMenuOpen(false)}>주요실적</NavLink>
+                    <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>상담</NavLink>
                 </nav>
             </div>
         </>

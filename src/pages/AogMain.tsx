@@ -134,15 +134,14 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                     onClick={onGoMain}
                     style={{ cursor: 'pointer' }}
                 >
-                    <img src="/logo/aog.png" alt="AOG" className="aog-brand-logo" />
-                    <span className="aog-brand-text">Team A.O.G</span>
+                    <img src="/logo/header_1.png" alt="AOG" className="aog-brand-logo" />
                 </div>
 
                 <nav className="aog-nav desktop-nav">
-                    <NavLink to="/" end>Home</NavLink>
-                    <NavLink to="/about">About Us</NavLink>
-                    <NavLink to="/portfolio">Portfolio</NavLink>
-                    <NavLink to="/contact">Contact Us</NavLink>
+                    <NavLink to="/" end>회사소개</NavLink>
+                    <NavLink to="/about">사업영역</NavLink>
+                    <NavLink to="/portfolio">주요실적</NavLink>
+                    <NavLink to="/contact">상담</NavLink>
                 </nav>
 
                 <button 
@@ -166,10 +165,10 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                     >
                         ✕
                     </button>
-                    <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-                    <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
-                    <NavLink to="/portfolio" onClick={() => setIsMenuOpen(false)}>Portfolio</NavLink>
-                    <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact Us</NavLink>
+                    <NavLink to="/" end onClick={() => setIsMenuOpen(false)}>회사소개</NavLink>
+                    <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>사업영역</NavLink>
+                    <NavLink to="/portfolio" onClick={() => setIsMenuOpen(false)}>주요실적</NavLink>
+                    <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>상담</NavLink>
                 </nav>
             </div>
 
@@ -195,7 +194,61 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                     <div className="scroll-hint">SCROLL DOWN</div>
                 </section>
 
-                {/* Section 2: Services */}
+                {/* Section 2: Company Philosophy */}
+                <section className="section section-philosophy">
+                    <CrossFade images={IMAGES} />
+                    <div className="section-content">
+                        <div className="philosophy-header">
+                            <h2 className="philosophy-main-title">Our Philosophy</h2>
+                            <p className="philosophy-subtitle">우리의 철학</p>
+                        </div>
+                        
+                        <div className="philosophy-grid">
+                            {/* Philosophy 1 */}
+                            <div className="philosophy-card">
+                                <div className="philosophy-number">No.1</div>
+                                <h3 className="philosophy-title">Professional Security,<br/>Trusted Protection</h3>
+                                <p className="philosophy-text">
+                                    고객의 안전과 신뢰를 최우선으로 생각합니다.
+                                    전문적인 경호 서비스로 고객의 소중한 순간을 안전하게 지킵니다.
+                                </p>
+                            </div>
+                            
+                            {/* Philosophy 2 */}
+                            <div className="philosophy-card">
+                                <div className="philosophy-number">No.2</div>
+                                <h3 className="philosophy-title">Experience Meets<br/>Excellence</h3>
+                                <p className="philosophy-text">
+                                    10년 이상 경력의 전문가들로 구성된 팀.
+                                    신변, 행사, 의전 경호, 시설 보안경비, 의전 드라이버, 발렛 서비스 등
+                                    다양한 분야에서 최상의 서비스를 제공합니다.
+                                </p>
+                            </div>
+                            
+                            {/* Philosophy 3 */}
+                            <div className="philosophy-card">
+                                <div className="philosophy-number">No.3</div>
+                                <h3 className="philosophy-title">Systematic &<br/>Reliable Service</h3>
+                                <p className="philosophy-text">
+                                    사전 위험 분석부터 현장 대응까지, 철저한 준비와 체계적인 운영으로
+                                    예상치 못한 상황에도 즉각적으로 대응합니다.
+                                </p>
+                            </div>
+                            
+                            {/* Philosophy 4 */}
+                            <div className="philosophy-card">
+                                <div className="philosophy-number">No.4</div>
+                                <h3 className="philosophy-title">Building<br/>Long-term Trust</h3>
+                                <p className="philosophy-text">
+                                    혁신적이고 역동적인 접근으로 새로운 기준을 제시하며,
+                                    고객과 함께 성장하는 신뢰할 수 있는 파트너가 되겠습니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Section 3: Services */}
                 <section className="section section-services">
                     <div className="section-content">
                         <div 
@@ -203,7 +256,7 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                             onClick={() => navigate('/portfolio')}
                             style={{ cursor: 'pointer' }}
                         >
-                            <h2>PORTFOLIO</h2>
+                            <h2>Our Services</h2>
                             <p>전문 경호 서비스</p>
                         </div>
                         
@@ -242,33 +295,6 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                     </div>
                 </section>
 
-                {/* Section 3: Stats */}
-                <section className="section section-stats">
-                    <div className="section-content">
-                        <div className="section-header">
-                            <h2>Since 2009</h2>
-                        </div>
-                        
-                        <div className="stats-grid">
-                            <div className="stat-card">
-                                <div className="stat-value">15+</div>
-                                <div className="stat-label">YEARS</div>
-                                <div className="stat-desc">전문 경력</div>
-                            </div>
-                            <div className="stat-card">
-                                <div className="stat-value">500+</div>
-                                <div className="stat-label">CLIENTS</div>
-                                <div className="stat-desc">고객사</div>
-                            </div>
-                            <div className="stat-card">
-                                <div className="stat-value">50+</div>
-                                <div className="stat-label">TEAM</div>
-                                <div className="stat-desc">전문 인력</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Section 4: Contact */}
                 <section className="section section-contact">
                     <div className="section-content">
@@ -284,14 +310,14 @@ export default function AogMain({ onGoMain }: AogMainProps) {
                             문의하기
                         </button>
                         <p className="contact-footer">
-                            Professional Security & Protection Since 2009
+                            Professional Security & Protection Since 2024
                         </p>
                     </div>
                 </section>
             </div>
 
             {/* Section Indicators */}
-            <div className={`section-indicators ${currentSection === 1 ? 'dark' : ''}`}>
+            <div className={`section-indicators ${currentSection === 2 ? 'dark' : ''}`}>
                 {Array.from({ length: SECTION_COUNT }).map((_, i) => (
                     <button
                         key={i}

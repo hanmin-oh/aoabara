@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   overflow: hidden; /* ✅ 페이지 스크롤 자체 차단 */
+  font-family: 'NanumSquareNeo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 #root {

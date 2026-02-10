@@ -178,7 +178,6 @@ export default function Portfolio() {
             {/* Hero Section */}
             <section className="portfolio-hero">
                 <div className="portfolio-hero-content">
-                    <p className="portfolio-hero-label">Our Work</p>
                     <h1 className="portfolio-hero-title">PORTFOLIO</h1>
                 </div>
             </section>

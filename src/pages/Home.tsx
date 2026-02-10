@@ -71,7 +71,8 @@ export default function Home({ onEnterTeamAog }: HomeProps) {
                             onClick={onEnterTeamAog}
                             aria-label="Enter TEAM AOG"
                         >
-                            <img src="/logo/aog.png" alt="AOG Company" className="introCenterLogo" />
+                            <img src="/logo/logo_1.png" alt="AOG Company" className="introCenterLogo" />
+                            <p className="introDesc">Professional Security & Protection</p>
                         </button>
                     </div>
                 </div>
@@ -79,7 +80,6 @@ export default function Home({ onEnterTeamAog }: HomeProps) {
                 <div className="introPane">
                     <div className="xfade">
                         <img src="/bara/teamBara" alt="TEAM BARA" className="xfadeImg on" />
-                        <div className="xfadeShade" />
                     </div>
                     <div className="introPaneOverlay">
                         <a
@@ -87,9 +87,10 @@ export default function Home({ onEnterTeamAog }: HomeProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Go to TeamBARA"
-                            className="introWordmark"
+                            className="introLink"
                         >
-                            TEAM BARA
+                            <span className="introWordmark">TEAM BARA</span>
+                            <p className="introDesc">Event Planning & Production</p>
                         </a>
                     </div>
                 </div>

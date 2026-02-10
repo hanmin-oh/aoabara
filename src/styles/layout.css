@@ -9,6 +9,7 @@ html, body, #root {
 body {
     margin: 0;
     overflow: hidden; /* ✅ 스크롤 완전 차단 */
+    font-family: 'NanumSquareNeo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* =========================
@@ -57,16 +58,12 @@ body {
 }
 
 .brandLogo {
-    height: 28px;
-    background: #fff;
-    padding: 4px 6px;
-    border-radius: 6px;
-}
-
-.brandText {
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 1px;
+    height: auto;
+    width: 180px;
+    max-height: 50px;
+    filter: brightness(0) invert(1);
+    /* 금색 → 검은색으로 변환 후 → 흰색으로 반전 */
+    /* 나중에 이미지 편집으로 여백 제거 예정 */
 }
 
 /* =========================

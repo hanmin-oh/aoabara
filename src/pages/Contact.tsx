@@ -6,7 +6,6 @@ export default function Contact() {
             {/* Hero Section */}
             <section className="contact-hero">
                 <div className="contact-hero-content">
-                    <p className="contact-hero-label">Get in Touch</p>
                     <h1 className="contact-hero-title">CONTACT US</h1>
                 </div>
             </section>
